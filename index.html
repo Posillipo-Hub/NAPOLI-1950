@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Napoli 1950 — L’ultimo carico</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#102225;color:#f3e6cd;font:15px system-ui,sans-serif;height:100vh;height:100dvh;display:flex;flex-direction:column}
+nav{display:flex;gap:.6rem;align-items:center;padding:.35rem .75rem;background:#162e31;border-bottom:1px solid #695941;min-height:42px;z-index:1}
+nav span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}button,select{font:inherit;color:inherit;border:1px solid #8d7a57;border-radius:6px;background:#203b3d;padding:.35rem .65rem}button{cursor:pointer}button:disabled{opacity:.55;cursor:default}button:focus-visible,select:focus-visible{outline:2px solid #e6c690;outline-offset:2px}
+.primary{background:#e6c690;color:#172323;font-weight:650}main{position:relative;flex:1;min-height:0}iframe{display:block;border:0;width:100%;height:100%;background:#102225}
+#loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:2rem;background:#102225;z-index:1}#loading[hidden],[hidden]{display:none!important}
+dialog{width:min(460px,calc(100% - 2rem));background:#142b2e;color:inherit;border:1px solid #968160;border-radius:12px;padding:1.35rem}dialog::backdrop{background:#080e11bc}dialog h1{font:600 1.45rem Georgia,serif;margin:0 0 1rem}dialog label{display:block;margin:.8rem 0 .35rem}dialog select{max-width:100%;width:100%}.actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.85rem}#saveMsg{margin:.85rem 0 0;min-height:1.4em;color:#e3cdab}
+</style>
+</head>
+<body>
+<nav aria-label="Partita">
+ <span id="chapter">Napoli 1950</span>
+ <button type="button" id="next" class="primary" hidden></button>
+ <button type="button" id="menuBtn">Partita</button>
+</nav>
+<main id="stage"><div id="loading" role="status">Apertura del gioco…</div></main>
+<dialog id="menu">
+ <h1>Napoli 1950 — L’ultimo carico</h1>
+ <label for="chapterSelect">Capitoli sbloccati</label>
+ <select id="chapterSelect"></select>
+ <div class="actions"><button id="openChapter">Apri capitolo</button><button id="resume" class="primary">Continua a giocare</button></div>
+ <div class="actions"><button id="exportSave">Esporta salvataggio</button><button id="importSave">Carica salvataggio</button><button id="newGame">Nuova partita</button></div>
+ <input type="file" id="saveFile" accept=".json,application/json" hidden>
+ <p id="saveMsg" role="status"></p>
+</dialog>
+<script type="application/octet-stream" data-chapter="0" data-save-key="" data-title="Via Toledo" data-src="livello-00.html"></script>
+<script type="application/octet-stream" data-chapter="1" data-save-key="napoli1950_l01_wide_v3_visible" data-title="Il carico tradito" data-src="livello-01.html"></script>
+<script type="application/octet-stream" data-chapter="2" data-save-key="napoli1950_l02_wide_v2_nuovi_ambienti" data-title="La carta che parla" data-src="livello-02.html"></script>
+<script type="application/octet-stream" data-chapter="3" data-save-key="napoli1950_l03_wide_agenzia_v2_nuovo_archivio" data-title="Quarantotto su quarantotto" data-src="livello-03.html"></script>
+<script type="application/octet-stream" data-chapter="4" data-save-key="napoli1950_l04_banchina_check_v5" data-title="La banchina" data-src="livello-04.html"></script>
+<script type="application/octet-stream" data-chapter="5" data-save-key="napoli1950_l05_uomo_della_nave_v1" data-title="L’uomo della nave" data-src="livello-05.html"></script>
+<script type="application/octet-stream" data-chapter="6" data-save-key="napoli1950_l06_la_firma_sul_foglio_v1" data-title="La firma sul foglio" data-src="livello-06.html"></script>
+<script type="application/octet-stream" data-chapter="7" data-save-key="napoli1950_l07_le_iniziali_sul_registro_v1" data-title="Le iniziali sul registro" data-src="livello-07.html"></script>
+<script type="application/octet-stream" data-chapter="8" data-save-key="napoli1950_l08_il_turno_di_notte_v2" data-title="Il turno di notte" data-src="livello-08.html"></script>
+<script type="application/octet-stream" data-chapter="9" data-save-key="napoli1950_l09_la_chiave_del_nostromo_v2" data-title="La chiave del nostromo" data-src="livello-09.html"></script>
+<script type="application/octet-stream" data-chapter="10" data-save-key="napoli1950_l10_piombo_pinza_v2" data-title="Il piombo e la pinza" data-src="livello-10.html"></script>
+<script type="application/octet-stream" data-chapter="11" data-save-key="napoli1950_l11_bottega_via_marina_v1" data-title="La bottega di Via Marina" data-src="livello-11.html"></script>
+<script type="application/octet-stream" data-chapter="12" data-save-key="napoli1950_l12_contrassegno_m7_v1" data-title="Il contrassegno M7" data-src="livello-12.html"></script>
+<script type="application/octet-stream" data-chapter="13" data-save-key="napoli1950_l13_un_marinaio_santa_lucia_v1" data-title="Un marinaio a Santa Lucia" data-src="livello-13.html"></script>
+<script type="application/octet-stream" data-chapter="14" data-save-key="napoli1950_l14_stanza_marinaio_v1" data-title="La stanza del marinaio" data-src="livello-14.html"></script>
+<script type="application/octet-stream" data-chapter="15" data-save-key="napoli1950_l15_un_cognome_familiare_v1" data-title="Un cognome familiare" data-src="livello-15.html"></script>
+<script type="application/octet-stream" data-chapter="16" data-save-key="napoli1950_l16_la_cena_dei_castiello_v1" data-title="La cena dei Castiello" data-src="livello-16.html"></script>
+<script type="application/octet-stream" data-chapter="17" data-save-key="napoli1950_l17_la_testimonianza_v1" data-title="La testimonianza" data-src="livello-17.html"></script>
+<script type="application/octet-stream" data-chapter="18" data-save-key="napoli1950_l18_il_commerciante_rispettabile_v1" data-title="Il commerciante rispettabile" data-src="livello-18.html"></script>
+<script type="application/octet-stream" data-chapter="19" data-save-key="napoli1950_l19_ultimo_carico_v1" data-title="L’ultimo carico" data-src="livello-19.html"></script>
+<script type="application/octet-stream" data-chapter="20" data-save-key="napoli1950_l20_quarantotto_casse_v1" data-title="Le quarantotto casse" data-src="livello-20.html"></script>
+
+<script>
+(() => {
+ const $=id=>document.getElementById(id);
+ const chapters=[...document.querySelectorAll('script[data-chapter]')];
+ const titles=chapters.map(node=>node.dataset.title);
+ const keys=chapters.map(node=>node.dataset.saveKey);
+ const end=chapters.length-1;
+ const storageKey='napoli1950_edizione_offline_v1';
+ const validDataKey=key=>/^napoli1950_[a-z0-9_]+$/i.test(key)&&key!==storageKey;
+ const initial=()=>({version:1,current:0,unlocked:0,data:{}});
+ function validate(raw){
+  if(!raw||raw.version!==1||!Number.isInteger(raw.current)||!Number.isInteger(raw.unlocked)||
+    raw.current<0||raw.unlocked<raw.current||raw.unlocked>end||!raw.data||
+    typeof raw.data!=='object'||Array.isArray(raw.data))throw new Error('Salvataggio non valido per questa edizione.');
+  const data=Object.fromEntries(Object.entries(raw.data).filter(([key,value])=>validDataKey(key)&&typeof value==='string'&&value.length<100000));
+  return {version:1,current:raw.current,unlocked:raw.unlocked,data};
+ }
+ let state=initial(), autoSave=true, frame=null, request=0, busy=false;
+ try{
+  const previous=localStorage.getItem(storageKey);
+  if(previous)state=validate(JSON.parse(previous));
+ }catch{}
+ function persist(){
+  try{localStorage.setItem(storageKey,JSON.stringify(state));autoSave=true;}
+  catch{autoSave=false;}
+ }
+ function setStatus(message=''){
+  $('saveMsg').textContent=message||(autoSave?'I progressi si salvano automaticamente.':'Per conservare i progressi, esporta il salvataggio.');
+ }
+ function update(){
+  const index=state.current;
+  $('chapter').textContent=index===0?'Prologo · Via Toledo':'Livello '+index+' · '+titles[index];
+  $('next').hidden=busy||index===0||index>=end||state.unlocked<=index;
+  $('next').textContent='Livello '+(index+1)+' →';
+  $('chapterSelect').replaceChildren(...titles.slice(0,state.unlocked+1).map((title,i)=>
+    new Option(i===0?'Prologo · '+title:i+' · '+title,String(i),false,i===index)));
+  setStatus();
+ }
+ const levelStorage=Object.freeze({
+  getItem(key){return Object.hasOwn(state.data,key)?state.data[key]:null;},
+  setItem(key,value){
+   if(!validDataKey(key))return;
+   state.data[key]=String(value);
+   const index=keys.indexOf(key);
+   let unlocked=false;
+   if(index>0&&index===state.current&&index<end&&state.unlocked===index){
+    try{unlocked=JSON.parse(value).solved===true;}catch{}
+    if(unlocked)state.unlocked=index+1;
+   }
+   persist();
+   if(unlocked)update();
+  },
+  removeItem(key){if(validDataKey(key)){delete state.data[key];persist();}}
+ });
+ const bridge=Object.freeze({
+  storage:levelStorage,
+  advance(index){
+   if(busy||state.current!==index||index>=end)return;
+   if(index===0)state.unlocked=Math.max(1,state.unlocked);
+   if(state.unlocked>index)openLevel(index+1);
+  },
+  mayAdvance(index){return !busy&&state.current===index&&index>0&&index<end&&state.unlocked>index;}
+ });
+ Object.defineProperty(window,'napoliCampaign',{value:bridge});
+ async function unpack(node){
+  const response=await fetch(node.dataset.src);
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  return response.text();
+ }
+ async function openLevel(index){
+  if(!Number.isInteger(index)||index<0||index>state.unlocked)return;
+  const token=++request;
+  busy=true;
+  $('next').hidden=true;
+  $('loading').hidden=false;
+  $('loading').textContent='Apertura di '+titles[index]+'…';
+  try{
+   const html=await unpack(chapters[index]);
+   if(token!==request)return;
+   const nextFrame=document.createElement('iframe');
+   nextFrame.title=index===0?'Prologo · Via Toledo':'Livello '+index+' · '+titles[index];
+   state.current=index;
+   persist();
+   nextFrame.addEventListener('load',()=>{
+    if(token!==request)return;
+    busy=false;
+    $('loading').hidden=true;
+    update();
+   },{once:true});
+   nextFrame.srcdoc=html;
+   frame?.remove();
+   frame=nextFrame;
+   $('stage').append(frame);
+   update();
+  }catch{
+   if(token!==request)return;
+   busy=false;
+   $('loading').textContent='Non è stato possibile caricare il capitolo. Controlla la connessione, poi ricarica la pagina.';
+   update();
+  }
+ }
+ $('next').onclick=()=>bridge.advance(state.current);
+ $('menuBtn').onclick=()=>{update();$('menu').showModal();};
+ $('resume').onclick=()=>$('menu').close();
+ $('openChapter').onclick=()=>{const index=Number($('chapterSelect').value);$('menu').close();if(index!==state.current||!frame)openLevel(index);};
+ $('newGame').onclick=()=>{
+  if(!confirm('Iniziare una nuova partita? I progressi della partita corrente saranno sostituiti.'))return;
+  const preferences=Object.fromEntries(Object.entries(state.data).filter(([key])=>!keys.includes(key)));
+  state={...initial(),data:preferences};
+  $('menu').close();
+  openLevel(0);
+ };
+ $('exportSave').onclick=()=>{
+  const url=URL.createObjectURL(new Blob([JSON.stringify(state)],{type:'application/json'}));
+  const link=document.createElement('a');
+  link.href=url;
+  link.download='Napoli1950_salvataggio_'+new Date().toISOString().slice(0,19).replaceAll(':','-')+'.json';
+  link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+  setStatus('Salvataggio esportato.');
+ };
+ $('importSave').onclick=()=>$('saveFile').click();
+ $('saveFile').onchange=async event=>{
+  const file=event.target.files[0];
+  event.target.value='';
+  if(!file)return;
+  try{
+   if(file.size>400000)throw new Error('Salvataggio non valido.');
+   const imported=validate(JSON.parse(await file.text()));
+   if((state.unlocked||Object.keys(state.data).some(key=>keys.includes(key)))&&
+     !confirm('Caricare questo salvataggio al posto della partita corrente?'))return;
+   state=imported;
+   $('menu').close();
+   await openLevel(state.current);
+  }catch{setStatus('Il file selezionato non è un salvataggio valido di Napoli 1950.');}
+ };
+ persist();
+ openLevel(state.current);
+})();
+</script>
+</body>
+</html>
